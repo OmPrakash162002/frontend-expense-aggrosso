@@ -14,7 +14,7 @@ export default function PolicyPage() {
   return (
     <>
       <h1>Expense policy</h1>
-      <p className="muted">This is the policy the assistant retrieves from and cites. Edit <code>backend/src/config/policy.js</code> to change it.</p>
+      <p className="muted">This is the policy the assistant retrieves from and cites.</p>
       <div className="card">
         <h2>Limits (in {config.baseCurrency})</h2>
         <table>
