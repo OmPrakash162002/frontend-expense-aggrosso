@@ -53,8 +53,8 @@ to the sign-in page they used.
 | | |
 |---|---|
 | **Live app** | `https://frontend-expense-aggrosso.vercel.app/` |
-| **Email** | `priya.reviewer@example.com` |
-| **Password** | `Password123!` |
+| **Email** | `admin@gmail.com` |
+| **Password** | `kishor000101` |
 
 > **First load can be slow.** The backend runs on a free tier that sleeps when idle. If the app looks stuck, open
 > https://expense-review-api.onrender.com/api/health , wait up to a minute for `{"ok":true}`, then reload the app.
