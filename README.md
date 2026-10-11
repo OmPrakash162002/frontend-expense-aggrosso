@@ -1,7 +1,10 @@
 # Frontend: Expense Claim Review
 
+NOTE : I have seperated backend repository so backend repo link - `https://github.com/OmPrakash162002/backend.git`;
+
 Next.js (App Router) + React web app for employees and reviewers. Plain CSS, no UI framework.
 It talks to the Express API in `../backend`.
+
 
 Live app: `https://frontend-expense-aggrosso.vercel.app/`
 
