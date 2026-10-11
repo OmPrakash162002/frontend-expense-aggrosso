@@ -59,3 +59,4 @@ details.evidence p { margin: .3rem 0 .3rem 1rem; color: var(--muted); }
 .linkbtn:hover:not(:disabled) { background: none; color: #fff; }
 .authcard { max-width: 420px; margin: 2rem auto; }
 .readonly { padding: .5rem .6rem; background: #f0f3f6; border: 1px solid var(--line); border-radius: 6px; }
+.tabs a.btn[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }

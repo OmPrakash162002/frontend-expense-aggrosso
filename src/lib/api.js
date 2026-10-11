@@ -33,7 +33,7 @@ async function request(path, { method = 'GET', body } = {}) {
 const post = (path, body = {}) => request(path, { method: 'POST', body });
 
 export const api = {
-  login: (email, password) => post('/auth/login', { email, password }),
+    login: (email, password, portal) => post('/auth/login', { email, password, portal }),
   register: (name, email, password) => post('/auth/register', { name, email, password }),
   me: () => request('/auth/me'),
   policy: () => request('/policy'),

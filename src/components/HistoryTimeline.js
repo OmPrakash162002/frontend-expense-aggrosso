@@ -16,7 +16,7 @@ function detail(h) {
   switch (h.action) {
     case 'CLAIM_SUBMITTED': return `${d.amount} ${d.currency}, claimed as ${categoryLabel(d.category)}`;
     case 'AI_ANALYSED':
-    case 'REANALYSED': return `${d.source === 'claude' ? 'Claude' : 'Rules fallback'}: ${categoryLabel(d.category) || 'unclassified'} (${Math.round((d.confidence || 0) * 100)}%${d.uncertain ? ', uncertain' : ''}), assessment: ${d.verdict}${d.issues?.length ? `, checks: ${d.issues.join(', ')}` : ''}`;
+    case 'REANALYSED': return `${d.source === 'gemini' ? 'Gemini' : 'Rules fallback'}: ${categoryLabel(d.category) || 'unclassified'} (${Math.round((d.confidence || 0) * 100)}%${d.uncertain ? ', uncertain' : ''}), assessment: ${d.verdict}${d.issues?.length ? `, checks: ${d.issues.join(', ')}` : ''}`;
     case 'APPROVED':
     case 'REJECTED': return d.note ? `“${d.note}”` : '';
     case 'CLARIFICATION_REQUESTED': return `Q: ${d.question}`;
