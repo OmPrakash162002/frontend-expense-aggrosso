@@ -3,7 +3,7 @@
 Next.js (App Router) + React web app for employees and reviewers. Plain CSS, no UI framework.
 It talks to the Express API in `../backend`.
 
-Live app: `<FRONTEND_URL>`
+Live app: `https://frontend-expense-aggrosso.vercel.app/`
 
 ## Requirements
 
