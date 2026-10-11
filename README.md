@@ -47,7 +47,17 @@ npm run dev                          # http://localhost:3000
 Signed-out visitors are redirected to the sign-in page. After signing out, or when a session expires, users are sent back
 to the sign-in page they used.
 
-## Try it
+
+## Try it now (no setup needed)
+
+| | |
+|---|---|
+| **Live app** | `https://frontend-expense-aggrosso.vercel.app/` |
+| **Email** | `priya.reviewer@example.com` |
+| **Password** | `Password123!` |
+
+> **First load can be slow.** The backend runs on a free tier that sleeps when idle. If the app looks stuck, open
+> https://expense-review-api.onrender.com/api/health , wait up to a minute for `{"ok":true}`, then reload the app.
 
 1. Sign in as an employee and submit a claim. Choose **Other / not sure** and a vague description to see an uncertain
    AI classification.
@@ -55,7 +65,6 @@ to the sign-in page they used.
    **Request clarification** or **Override classification**.
 3. Go back to the employee account, answer the clarification, then finish the review as the reviewer.
 
-Demo credentials are listed in the [root README](../README.md).
 
 ## Project structure
 
