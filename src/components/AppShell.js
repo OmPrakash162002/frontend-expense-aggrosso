@@ -1,23 +1,28 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from './AuthProvider';
 
-const PUBLIC_PATHS = ['/login', '/register'];
+const PUBLIC_PATHS = ['/login', '/admin/login', '/register'];
 
-// Header + route guard: signed-out visitors are sent to /login, signed-in users are kept off /login.
+// Header + route guard: signed-out visitors are sent to a sign-in page, signed-in users are kept off it.
 export default function AppShell({ children }) {
   const { user, loading, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const isPublic = PUBLIC_PATHS.includes(pathname);
 
+  // After sign-out (or an expired session) send people back to the sign-in page they used
+  const lastRole = useRef('employee');
+  if (user) lastRole.current = user.role;
+  const loginPath = lastRole.current === 'reviewer' ? '/admin/login' : '/login';
+
   useEffect(() => {
     if (loading) return;
-    if (!user && !isPublic) router.replace('/login');
+    if (!user && !isPublic) router.replace(loginPath);
     if (user && isPublic) router.replace('/');
-  }, [loading, user, isPublic, router]);
+  }, [loading, user, isPublic, router, loginPath]);
 
   const ready = !loading && ((user && !isPublic) || (!user && isPublic));
 

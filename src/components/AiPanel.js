@@ -10,7 +10,7 @@ export default function AiPanel({ claim, policyById, onReanalyse, busy }) {
     <section className="card">
       <div className="row spread">
         <h2 style={{ margin: 0 }}>AI analysis</h2>
-        <span className="badge neutral">{ai.source === 'claude' ? `Claude · ${ai.model}` : 'Rules-based fallback'}</span>
+        <span className="badge neutral">{ai.source === 'gemini' ? `Gemini · ${ai.model}` : 'Rules-based fallback'}</span>
       </div>
       {ai.error && <div className="alert warn" style={{ marginTop: '.6rem' }}>{ai.error}</div>}
 

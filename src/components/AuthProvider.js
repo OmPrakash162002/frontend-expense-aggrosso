@@ -24,7 +24,7 @@ export default function AuthProvider({ children }) {
   }, []);
 
   const finish = useCallback((r) => { setToken(r.token); setUser(r.user); }, []);
-  const login = useCallback(async (email, password) => finish(await api.login(email, password)), [finish]);
+    const login = useCallback(async (email, password, portal) => finish(await api.login(email, password, portal)), [finish]);
   const register = useCallback(async (name, email, password) => finish(await api.register(name, email, password)), [finish]);
   const logout = useCallback(() => { clearToken(); setUser(null); }, []);
 

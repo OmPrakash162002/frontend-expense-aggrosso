@@ -3,9 +3,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from './AuthProvider';
 
-export default function AuthForm({ mode }) {
+// mode: "login" | "register"   portal: "employee" | "reviewer" (login only)
+export default function AuthForm({ mode, portal = 'employee' }) {
   const { login, register } = useAuth();
   const isRegister = mode === 'register';
+  const isReviewer = portal === 'reviewer';
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
@@ -17,7 +19,7 @@ export default function AuthForm({ mode }) {
     setBusy(true); setError(''); setFieldErrors({});
     try {
       if (isRegister) await register(form.name, form.email, form.password);
-      else await login(form.email, form.password);
+      else await login(form.email, form.password, portal);
       // AppShell redirects to the dashboard once the user is set
     } catch (err) {
       setError(err.message);
@@ -34,10 +36,23 @@ export default function AuthForm({ mode }) {
     </div>
   );
 
+  const title = isRegister ? 'Create an employee account' : isReviewer ? 'Reviewer sign in' : 'Employee sign in';
+  const intro = isRegister
+    ? 'Registration creates an employee account.'
+    : isReviewer
+      ? 'For reviewers and administrators who approve or reject claims.'
+      : 'Submit claims and track their status.';
+
   return (
     <div className="authcard card">
-      <h1>{isRegister ? 'Create an account' : 'Sign in'}</h1>
-      <p className="muted">{isRegister ? 'New accounts are employee accounts. A reviewer can be assigned later by an administrator.' : 'Use your work email and password.'}</p>
+      {!isRegister && (
+        <div className="tabs">
+          <Link className="btn" href="/login" aria-current={!isReviewer ? 'page' : undefined}>Employee</Link>
+          <Link className="btn" href="/admin/login" aria-current={isReviewer ? 'page' : undefined}>Reviewer</Link>
+        </div>
+      )}
+      <h1>{title}</h1>
+      <p className="muted">{intro}</p>
       {error && <div className="alert bad">{error}</div>}
       <form onSubmit={submit} noValidate>
         {isRegister && field('name', 'Full name', { autoComplete: 'name' })}
@@ -47,7 +62,9 @@ export default function AuthForm({ mode }) {
         <button className="primary" disabled={busy}>{busy ? 'Please wait…' : isRegister ? 'Create account' : 'Sign in'}</button>
       </form>
       <p className="small" style={{ marginBottom: 0 }}>
-        {isRegister ? <>Already have an account? <Link href="/login">Sign in</Link></> : <>No account yet? <Link href="/register">Create one</Link></>}
+        {isRegister && <>Already have an account? <Link href="/login">Sign in</Link></>}
+        {!isRegister && !isReviewer && <>No account yet? <Link href="/register">Create one</Link></>}
+        {!isRegister && isReviewer && <span className="muted">Reviewer accounts are assigned by an administrator and cannot be self-registered.</span>}
       </p>
     </div>
   );
